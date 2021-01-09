@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      {{titulo}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,82 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">{{titulo}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+   <div class="mainBodyContainer">
+     <ion-item class="inputIonItem">
+       <ion-label position="floating">Nombre</ion-label>
+       <ion-input></ion-input>
+     </ion-item>
+     <ion-item class="inputIonItem">
+       <ion-label position="floating">Descripción</ion-label>
+       <ion-input></ion-input>
+     </ion-item>
+     <ion-item class="inputIonItem">
+       <ion-input readonly>{{categoria}}</ion-input>
+       <ion-button slot="end" fill="clear" (click)="showBasicPicker()" position="floating">Seleccionar</ion-button>
+     </ion-item>
+     <div class="specs">
+       <div class="internalSpecs" *ngIf="categoria == 'Tecnología'">
+         <ion-radio-group class="internalSpecs">
+          <ion-item class="inputIonItem">
+            <ion-label>Estado</ion-label>
+            <ion-radio value="Coche"></ion-radio>
+            <ion-label>Perfecto</ion-label>
+            <ion-radio value="Moto"></ion-radio>
+            <ion-label>Usado</ion-label>
+          </ion-item>
+        </ion-radio-group>
+       </div>
+       <div class="internalSpecs" *ngIf="categoria == 'Hogar'">
+
+       </div>
+       <div class="internalSpecs" *ngIf="categoria == 'Inmobiliaria'">
+         <ion-item class="inputIonItem">
+           <ion-label position="floating">Metros cuadrados</ion-label>
+           <ion-input type="number"></ion-input>
+         </ion-item>
+         <ion-item class="inputIonItem">
+           <ion-label position="floating">Baños</ion-label>
+           <ion-input></ion-input>
+         </ion-item>
+         <ion-item class="inputIonItem">
+           <ion-label position="floating">Habitaciones</ion-label>
+           <ion-input type="number"></ion-input>
+         </ion-item>
+         <ion-item class="inputIonItem">
+           <ion-label position="floating">Localidad</ion-label>
+           <ion-input type="number"></ion-input>
+         </ion-item>
+       </div>
+       <div class="internalSpecs" *ngIf="categoria == 'Motor'">
+         <ion-radio-group class="internalSpecs">
+          <ion-item class="inputIonItem">
+            <ion-label>Tipo de vehiculo</ion-label>
+            <ion-radio value="Coche"></ion-radio>
+            <ion-label>Coche</ion-label>
+            <ion-radio value="Moto"></ion-radio>
+            <ion-label>Moto</ion-label>
+          </ion-item>
+        </ion-radio-group>
+        <ion-item class="inputIonItem">
+          <ion-label position="floating">Kilometros</ion-label>
+          <ion-input type="number"></ion-input>
+        </ion-item>
+        <ion-item class="inputIonItem">
+          <ion-label position="floating">Año</ion-label>
+          <ion-datetime display-timezone="utc"></ion-datetime>
+        </ion-item>
+       </div>
+     </div>
+     <ion-item class="inputIonItem">
+       <ion-label position="floating">Precio</ion-label>
+       <ion-input type="number"></ion-input>
+     </ion-item>
+
+   </div>
   </div>
 </ion-content>
