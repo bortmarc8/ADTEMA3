@@ -16,12 +16,12 @@
   <div id="container">
    <div class="mainBodyContainer">
      <ion-item class="inputIonItem">
-       <ion-label position="floating">Nombre</ion-label>
-       <ion-input></ion-input>
+       <ion-label position="floating" >Nombre</ion-label>
+       <ion-input [(ngModel)]="nombre"></ion-input>
      </ion-item>
      <ion-item class="inputIonItem">
        <ion-label position="floating">Descripción</ion-label>
-       <ion-input></ion-input>
+       <ion-input [(ngModel)]="descripcion"></ion-input>
      </ion-item>
      <ion-item class="inputIonItem">
        <ion-input readonly>{{categoria}}</ion-input>
@@ -30,11 +30,11 @@
      <div class="specs">
        <div class="internalSpecs" *ngIf="categoria == 'Tecnología'">
          <ion-radio-group class="internalSpecs">
-          <ion-item class="inputIonItem">
+          <ion-item [(ngModel)]="estado" class="inputIonItem">
             <ion-label>Estado</ion-label>
-            <ion-radio value="Coche"></ion-radio>
+            <ion-radio value="Perfecto"></ion-radio>
             <ion-label>Perfecto</ion-label>
-            <ion-radio value="Moto"></ion-radio>
+            <ion-radio value="Usado"></ion-radio>
             <ion-label>Usado</ion-label>
           </ion-item>
         </ion-radio-group>
@@ -45,24 +45,24 @@
        <div class="internalSpecs" *ngIf="categoria == 'Inmobiliaria'">
          <ion-item class="inputIonItem">
            <ion-label position="floating">Metros cuadrados</ion-label>
-           <ion-input type="number"></ion-input>
+           <ion-input type="number" [(ngModel)]="mCuadrados"></ion-input>
          </ion-item>
          <ion-item class="inputIonItem">
            <ion-label position="floating">Baños</ion-label>
-           <ion-input></ion-input>
+           <ion-input [(ngModel)]="banyos"></ion-input>
          </ion-item>
          <ion-item class="inputIonItem">
            <ion-label position="floating">Habitaciones</ion-label>
-           <ion-input type="number"></ion-input>
+           <ion-input [(ngModel)]="habitaciones" type="number"></ion-input>
          </ion-item>
          <ion-item class="inputIonItem">
            <ion-label position="floating">Localidad</ion-label>
-           <ion-input type="number"></ion-input>
+           <ion-input [(ngModel)]="localidad" type="string"></ion-input>
          </ion-item>
        </div>
        <div class="internalSpecs" *ngIf="categoria == 'Motor'">
          <ion-radio-group class="internalSpecs">
-          <ion-item class="inputIonItem">
+          <ion-item class="inputIonItem" [(ngModel)]="tipoVehiculo">
             <ion-label>Tipo de vehiculo</ion-label>
             <ion-radio value="Coche"></ion-radio>
             <ion-label>Coche</ion-label>
@@ -72,18 +72,43 @@
         </ion-radio-group>
         <ion-item class="inputIonItem">
           <ion-label position="floating">Kilometros</ion-label>
-          <ion-input type="number"></ion-input>
+          <ion-input type="number" [(ngModel)]="kilometros"></ion-input>
         </ion-item>
         <ion-item class="inputIonItem">
           <ion-label position="floating">Año</ion-label>
-          <ion-datetime display-timezone="utc"></ion-datetime>
+          <ion-datetime display-timezone="utc" [(ngModel)]="anyo"></ion-datetime>
         </ion-item>
        </div>
      </div>
      <ion-item class="inputIonItem">
        <ion-label position="floating">Precio</ion-label>
-       <ion-input type="number"></ion-input>
+       <ion-input type="number" [(ngModel)]="precio"></ion-input>
      </ion-item>
+     <ion-button expand="block" (click)="insertar()" class="ionSubmitBtn" color="secondary">Subir producto</ion-button>
+
+   </div>
+
+   <div class="productListContainer">
+    <ion-card *ngFor="let item of productos" class="ionCardProduct">
+      <h5>{{item.nombre}} ({{item.precio}}€)</h5>
+      <ion-card-content>{{item.descripcion}}</ion-card-content>
+      <ion-chip *ngIf="item.categoria == 'Tecnología'" color="secondary">
+        <ion-icon name="hardware-chip-outline" color="secondary"></ion-icon>
+        <ion-label color="secondary">{{item.categoria}}</ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="item.categoria == 'Hogar'" color="success">
+        <ion-icon name="home-outline" color="success"></ion-icon>
+        <ion-label color="success">{{item.categoria}}</ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="item.categoria == 'Motor'" color="danger">
+        <ion-icon name="car-outline" color="danger"></ion-icon>
+        <ion-label color="danger">{{item.categoria}}</ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="item.categoria == 'Inmobiliaria'" color="warning">
+        <ion-icon name="business-outline" color="warning"></ion-icon>
+        <ion-label color="warning">{{item.categoria}}</ion-label>
+      </ion-chip>
+    </ion-card>
 
    </div>
   </div>

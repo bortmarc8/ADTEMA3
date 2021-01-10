@@ -34,3 +34,19 @@
   margin-bottom: 10px;
   border-radius: 15px;
 }
+
+.ionSubmitBtn {
+  height: 50px;
+}
+
+.productListContainer {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+   justify-content: center;
+}
+
+.ionCardProduct {
+  width: 40%;
+  max-width: 300px;
+}
