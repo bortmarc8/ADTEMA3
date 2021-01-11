@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalles del producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="this.producto != null" class="ion-card-detailed">
+    <h5>{{producto.nombre}} ({{producto.precio}}€)</h5>
+    <ion-text><b>Descripción: </b>{{producto.descripcion}}<br><br></ion-text>
+    <ion-text *ngIf="producto.categoria == 'Tecnología'"><b>Estado: </b>{{producto.estado}}<br><br></ion-text>
+    <ion-text *ngIf="producto.categoria == 'Inmobiliaria'"><b>Metros cuadrados: </b>{{producto.metrosCuadrados}}<br><br></ion-text>
+    <ion-text *ngIf="producto.categoria == 'Inmobiliaria'"><b>Baños: </b>{{producto.banyos}}<br><br></ion-text>
+    <ion-text *ngIf="producto.categoria == 'Inmobiliaria'"><b>Habitaciones: </b>{{producto.habitaciones}}<br><br></ion-text>
+    <ion-text *ngIf="producto.categoria == 'Inmobiliaria'"><b>Localidad: </b>{{producto.localidad}}<br><br></ion-text>
+    <ion-text *ngIf="producto.categoria == 'Motor'"><b>Tipo: </b>{{producto.tipo}}<br><br></ion-text>
+    <ion-text *ngIf="producto.categoria == 'Motor'"><b>Kilometros: </b>{{producto.kilometros}}<br><br></ion-text>
+    <ion-text *ngIf="producto.categoria == 'Motor'"><b>Año: </b>{{producto.anyo}}<br><br></ion-text>
+
+    <ion-chip *ngIf="producto.categoria == 'Tecnología'" color="secondary">
+      <ion-icon name="hardware-chip-outline" color="secondary"></ion-icon>
+      <ion-label color="secondary">{{producto.categoria}}</ion-label>
+    </ion-chip>
+    <ion-chip *ngIf="producto.categoria == 'Hogar'" color="success">
+      <ion-icon name="home-outline" color="success"></ion-icon>
+      <ion-label color="success">{{producto.categoria}}</ion-label>
+    </ion-chip>
+    <ion-chip *ngIf="producto.categoria == 'Motor'" color="danger">
+      <ion-icon name="car-outline" color="danger"></ion-icon>
+      <ion-label color="danger">{{producto.categoria}}</ion-label>
+    </ion-chip>
+    <ion-chip *ngIf="producto.categoria == 'Inmobiliaria'" color="warning">
+      <ion-icon name="business-outline" color="warning"></ion-icon>
+      <ion-label color="warning">{{producto.categoria}}</ion-label>
+    </ion-chip>
+
+  </ion-card>
+  <div class="ion-error" *ngIf="this.producto == null">
+    <h4>Vaya... El producto que estás buscando no existe</h4>
+  </div>
+</ion-content>

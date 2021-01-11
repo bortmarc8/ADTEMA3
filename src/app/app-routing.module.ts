@@ -11,6 +11,18 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'subir-producto',
+    loadChildren: () => import('./subir-producto/subir-producto.module').then( m => m.SubirProductoPageModule)
+  },
+  {
+    path: 'ver-productos',
+    loadChildren: () => import('./ver-productos/ver-productos.module').then( m => m.VerProductosPageModule)
+  },
+  {
+    path: 'product-details/:id',
+    loadChildren: () => import('./product-details/product-details.module').then( m => m.ProductDetailsPageModule)
+  },
 ];
 
 @NgModule({

@@ -43,10 +43,15 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-   justify-content: center;
+  justify-content: center;
 }
 
 .ionCardProduct {
   width: 40%;
   max-width: 300px;
+}
+
+.ion-button-footer {
+  width: 48%;
+  margin: 1%;
 }

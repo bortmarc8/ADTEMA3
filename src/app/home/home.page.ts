@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PickerController, ToastController } from '@ionic/angular';
 import { Iproductos, IproductoTecnologia, IproductoInmobiliaria, IproductoMotor } from '../interfaces';
+import { ListadoProductos } from '../services/listado.service';
 
 @Component({
   selector: 'app-home',
@@ -22,9 +23,14 @@ export class HomePage {
   tipoVehiculo : string;
   kilometros : number;
   anyo : string;
+
   productos : (Iproductos | IproductoTecnologia | IproductoInmobiliaria | IproductoMotor)[] = [];
 
-  constructor(private _pickerCtrl : PickerController, private _toastCtrl : ToastController) {}
+  constructor(private _pickerCtrl : PickerController, private _toastCtrl : ToastController, private _productList : ListadoProductos) {}
+
+  ngOnInit() {
+    this.productos = this._productList.getProductos();
+  }
 
   async presentToast() {
     const toast = await this._toastCtrl.create({
@@ -81,7 +87,7 @@ export class HomePage {
         "precio" : this.precio,
         "tipo" : this.tipoVehiculo,
         "kilometros" : this.kilometros,
-        "anyo" : this.anyo
+        "anyo" : this.anyo.substring(0,4)
       });
     } else if (this.categoria == 'Inmobiliaria'){
       this.productos.push({

@@ -7,11 +7,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{titulo}}</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <div id="container">
    <div class="mainBodyContainer">
@@ -29,15 +24,19 @@
      </ion-item>
      <div class="specs">
        <div class="internalSpecs" *ngIf="categoria == 'Tecnología'">
-         <ion-radio-group class="internalSpecs">
-          <ion-item [(ngModel)]="estado" class="inputIonItem">
-            <ion-label>Estado</ion-label>
-            <ion-radio value="Perfecto"></ion-radio>
-            <ion-label>Perfecto</ion-label>
-            <ion-radio value="Usado"></ion-radio>
-            <ion-label>Usado</ion-label>
-          </ion-item>
-        </ion-radio-group>
+         <ion-list class="inputIonItem" ngDefaultControl>
+           <ion-radio-group [(ngModel)]="estado">
+             <ion-label>Estado del producto</ion-label>
+             <ion-item>
+               <ion-label>Nuevo</ion-label>
+               <ion-radio value="Nuevo"></ion-radio>
+             </ion-item>
+             <ion-item>
+               <ion-label>Usado</ion-label>
+               <ion-radio value="Usado"></ion-radio>
+             </ion-item>
+           </ion-radio-group>
+         </ion-list>
        </div>
        <div class="internalSpecs" *ngIf="categoria == 'Hogar'">
 
@@ -61,22 +60,26 @@
          </ion-item>
        </div>
        <div class="internalSpecs" *ngIf="categoria == 'Motor'">
-         <ion-radio-group class="internalSpecs">
-          <ion-item class="inputIonItem" [(ngModel)]="tipoVehiculo">
-            <ion-label>Tipo de vehiculo</ion-label>
-            <ion-radio value="Coche"></ion-radio>
-            <ion-label>Coche</ion-label>
-            <ion-radio value="Moto"></ion-radio>
-            <ion-label>Moto</ion-label>
-          </ion-item>
-        </ion-radio-group>
+          <ion-list class="inputIonItem" ngDefaultControl>
+            <ion-radio-group [(ngModel)]="tipoVehiculo">
+              <ion-label>Tipo de vehiculo</ion-label>
+              <ion-item>
+                <ion-label>Coche</ion-label>
+                <ion-radio value="Coche"></ion-radio>
+              </ion-item>
+              <ion-item>
+                <ion-label>Moto</ion-label>
+                <ion-radio value="Moto"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
         <ion-item class="inputIonItem">
           <ion-label position="floating">Kilometros</ion-label>
           <ion-input type="number" [(ngModel)]="kilometros"></ion-input>
         </ion-item>
         <ion-item class="inputIonItem">
           <ion-label position="floating">Año</ion-label>
-          <ion-datetime display-timezone="utc" [(ngModel)]="anyo"></ion-datetime>
+          <ion-datetime displayFormat="YYYY" [(ngModel)]="anyo"></ion-datetime>
         </ion-item>
        </div>
      </div>
@@ -109,7 +112,18 @@
         <ion-label color="warning">{{item.categoria}}</ion-label>
       </ion-chip>
     </ion-card>
-
    </div>
   </div>
+
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button class="ion-button-footer" routerLink="/subir-producto" routerDirection="forward">
+      <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button class="ion-button-footer" routerLink="/ver-productos" routerDirection="back">
+      <ion-icon slot="icon-only" name="list-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
