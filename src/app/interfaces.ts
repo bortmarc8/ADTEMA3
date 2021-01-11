@@ -1,5 +1,5 @@
 export interface Iproductos {
-  "id" : number;
+  "id" : string;
   "nombre" : string;
   "descripcion" : string;
   "categoria" : string;

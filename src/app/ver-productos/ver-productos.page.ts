@@ -15,7 +15,62 @@ export class VerProductosPage implements OnInit {
   constructor(private _activatedRoute : ActivatedRoute, private _productList : ListadoProductos, private _toastCtrl : ToastController) { }
 
   ngOnInit() {
-    this.productos = this._productList.getProductos();
+    const ref = this._productList.getProductos();
+    ref.on("value", snapshot => {
+      this.productos = [];
+      snapshot.forEach(child => {
+        console.log("He encontrado " + child.key + " " + child.val().categoria);
+        if (child.val().categoria == 'Tecnología') {
+          this.productos.push(
+            {
+              "id" : child.key,
+              "nombre" : child.val().nombre,
+              "descripcion" : child.val().descripcion,
+              "categoria" : child.val().categoria,
+              "precio" : child.val().precio,
+              "estado" : child.val().estado
+            }
+          )
+        } else if (child.val().categoria == 'Motor'){
+          this.productos.push(
+            {
+              "id" : child.key,
+              "nombre" : child.val().nombre,
+              "descripcion" : child.val().descripcion,
+              "categoria" : child.val().categoria,
+              "precio" : child.val().precio,
+              "tipo" : child.val().tipoVehiculo,
+              "kilometros" : child.val().kilometros,
+              "anyo" : child.val().anyo.substring(0,4)
+            }
+          );
+        } else if (child.val().categoria == 'Inmobiliaria'){
+          this.productos.push(
+            {
+              "id" : child.key,
+              "nombre" : child.val().nombre,
+              "descripcion" : child.val().descripcion,
+              "categoria" : child.val().categoria,
+              "precio" : child.val().precio,
+              "metrosCuadrados" : child.val().mCuadrados,
+              "banyos" : child.val().banyos,
+              "habitaciones" : child.val().habitaciones,
+              "localidad" : child.val().localidad
+            }
+          );
+        }else{
+          this.productos.push(
+            {
+              "id" : child.key,
+              "nombre" : child.val().nombre,
+              "descripcion" : child.val().descripcion,
+              "categoria" : child.val().categoria,
+              "precio" : child.val().precio
+            }
+          );
+        }
+      });
+    })
   }
 
 }

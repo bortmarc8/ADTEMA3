@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngIf="this.producto != null" class="ion-card-detailed">
+  <ion-card *ngIf="this.producto.nombre != null" class="ion-card-detailed">
     <h5>{{producto.nombre}} ({{producto.precio}}€)</h5>
     <ion-text><b>Descripción: </b>{{producto.descripcion}}<br><br></ion-text>
     <ion-text *ngIf="producto.categoria == 'Tecnología'"><b>Estado: </b>{{producto.estado}}<br><br></ion-text>
@@ -35,7 +35,7 @@
     </ion-chip>
 
   </ion-card>
-  <div class="ion-error" *ngIf="this.producto == null">
+  <div class="ion-error" *ngIf="this.producto.nombre == null">
     <h4>Vaya... El producto que estás buscando no existe</h4>
   </div>
 </ion-content>

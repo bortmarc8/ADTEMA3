@@ -10,13 +10,16 @@ import { Iproductos, IproductoTecnologia, IproductoInmobiliaria, IproductoMotor 
 })
 export class ProductDetailsPage implements OnInit {
   producto : (Iproductos | IproductoTecnologia | IproductoInmobiliaria | IproductoMotor);
-  id : number;
+  id : string;
 
   constructor(private _activatedRoute : ActivatedRoute, private _productList : ListadoProductos) { }
 
   ngOnInit() {
-    this.id = +this._activatedRoute.snapshot.paramMap.get('id');
+    this.id = this._activatedRoute.snapshot.paramMap.get('id');
     this.producto = this._productList.getProductoDetailed(this.id);
+    console.log(this.producto);
+
+
 
   }
 
