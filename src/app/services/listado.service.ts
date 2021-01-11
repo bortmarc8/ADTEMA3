@@ -13,7 +13,7 @@ export class ListadoProductos {
     ref.push(producto);
   }
 
-  getProductos() : firebase.database.Reference {
+  getProductos() : firebase.default.database.Reference {
     return this._db.database.ref("Productos");
   }
 
