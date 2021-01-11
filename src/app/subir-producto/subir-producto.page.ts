@@ -67,6 +67,7 @@ export class SubirProductoPage {
     if (this.categoria == 'Tecnología') {
       this._productList.setProducto(
         {
+          "propietario" : "maboto01",
           "id" : '',
           "nombre" : this.nombre,
           "descripcion" : this.descripcion,
@@ -78,6 +79,7 @@ export class SubirProductoPage {
     } else if (this.categoria == 'Motor'){
       this._productList.setProducto(
         {
+          "propietario" : "maboto01",
           "id" : '',
           "nombre" : this.nombre,
           "descripcion" : this.descripcion,
@@ -91,6 +93,7 @@ export class SubirProductoPage {
     } else if (this.categoria == 'Inmobiliaria'){
       this._productList.setProducto(
         {
+          "propietario" : "maboto01",
           "id" : '',
           "nombre" : this.nombre,
           "descripcion" : this.descripcion,
@@ -105,6 +108,7 @@ export class SubirProductoPage {
     }else{
       this._productList.setProducto(
         {
+          "propietario" : "maboto01",
           "id" : '',
           "nombre" : this.nombre,
           "descripcion" : this.descripcion,

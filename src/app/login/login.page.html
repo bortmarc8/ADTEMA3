@@ -1,0 +1,17 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <div class="loginFrame">
+    <ion-icon class="iconItem" name="person-circle-outline"></ion-icon>
+    <ion-item class="loginItem">
+      <ion-label position="floating">Username</ion-label>
+      <ion-input [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item class="loginItem">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+    <ion-button class="loginItem" color="primary" [routerLink]="['/home/',username]" routerDirection="back" expand="block">Login</ion-button>
+  </div>
+</ion-content>

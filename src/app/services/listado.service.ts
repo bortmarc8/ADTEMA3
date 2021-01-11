@@ -13,7 +13,7 @@ export class ListadoProductos {
     ref.push(producto);
   }
 
-  getProductos() : firebase.database.Reference {
+  getProductos() : firebase.default.database.Reference {
     return this._db.database.ref("Productos");
   }
 
@@ -23,6 +23,7 @@ export class ListadoProductos {
       if (child.val().categoria == 'Tecnología') {
         producto =
           {
+            "propietario" : child.val().propietario,
             "id" : child.key,
             "nombre" : child.val().nombre,
             "descripcion" : child.val().descripcion,
@@ -33,6 +34,7 @@ export class ListadoProductos {
       } else if (child.val().categoria == 'Motor'){
         producto =
           {
+            "propietario" : child.val().propietario,
             "id" : child.key,
             "nombre" : child.val().nombre,
             "descripcion" : child.val().descripcion,
@@ -45,6 +47,7 @@ export class ListadoProductos {
       } else if (child.val().categoria == 'Inmobiliaria'){
         producto =
           {
+            "propietario" : child.val().propietario,
             "id" : child.key,
             "nombre" : child.val().nombre,
             "descripcion" : child.val().descripcion,
@@ -58,6 +61,7 @@ export class ListadoProductos {
       }else{
         producto =
           {
+            "propietario" : child.val().propietario,
             "id" : child.key,
             "nombre" : child.val().nombre,
             "descripcion" : child.val().descripcion,

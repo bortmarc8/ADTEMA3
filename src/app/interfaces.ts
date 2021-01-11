@@ -1,4 +1,5 @@
 export interface Iproductos {
+  "propietario" : string;
   "id" : string;
   "nombre" : string;
   "descripcion" : string;
