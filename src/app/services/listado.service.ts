@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Iproductos, IproductoTecnologia, IproductoInmobiliaria, IproductoMotor } from '../interfaces';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { ToastController } from '@ionic/angular';
 
 @Injectable()
 
 export class ListadoProductos {
 
-  constructor(private _db : AngularFireDatabase) {}
+  constructor(private _db : AngularFireDatabase, private _toastCtrl : ToastController) {}
 
   async setProducto(producto : Iproductos | IproductoTecnologia | IproductoInmobiliaria | IproductoMotor) {
     const ref = this._db.database.ref("Productos");
     ref.push(producto);
+  }
+
+  async updateProducto (producto : Iproductos | IproductoTecnologia | IproductoInmobiliaria | IproductoMotor ) {
+    let ref = this._db.database.ref("Productos").child(producto.id);
+    ref.set(producto);
   }
 
   getProductos() : firebase.default.database.Reference {
@@ -73,6 +79,20 @@ export class ListadoProductos {
 
 
     return producto;
+  }
+
+  checkUsername(username : string) : boolean {
+    let checkUsername : boolean = false;
+    const ref = this._db.database.ref("Usuarios");
+
+    ref.on("value", snapshot => {
+        snapshot.forEach(child => {
+          if (username === child.val().username) {
+            checkUsername = true;
+          }
+        });
+    });
+    return checkUsername;
   }
 
 }

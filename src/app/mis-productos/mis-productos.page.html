@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <br>
+    <ion-title>Mis productos</ion-title>
+    <br>
+    <div class="categorias">
+      <ion-chip color="success" (click)="catHogar = !catHogar">
+        <ion-icon name="home-outline" color="success"></ion-icon>
+        <ion-label color="success">Hogar</ion-label>
+      </ion-chip>
+      <ion-chip color="danger" (click)="catMotor = !catMotor">
+        <ion-icon name="car-outline" color="danger"></ion-icon>
+        <ion-label color="danger">Motor</ion-label>
+      </ion-chip>
+      <ion-chip color="warning" (click)="catInmo = !catInmo">
+        <ion-icon name="business-outline" color="warning"></ion-icon>
+        <ion-label color="warning">Inmobiliaria</ion-label>
+      </ion-chip>
+      <ion-chip color="secondary" (click)="catTecno = !catTecno">
+        <ion-icon name="hardware-chip-outline" color="secondary"></ion-icon>
+        <ion-label color="secondary">Tecnología</ion-label>
+      </ion-chip>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="productListContainer">
+   <ion-card *ngFor="let item of productos" class="ionCardProduct">
+     <div *ngIf="item.categoria == 'Tecnología' && catTecno" class="ionCardProductTrigger" [routerLink]="['/modificar-productos/',item.id, username]" routerDirection="back" >
+       <h5>{{item.nombre}} ({{item.precio}}€)</h5>
+       <ion-card-content>{{item.descripcion}}</ion-card-content>
+       <ion-chip color="secondary">
+         <ion-icon name="hardware-chip-outline" color="secondary"></ion-icon>
+         <ion-label color="secondary">{{item.categoria}}</ion-label>
+       </ion-chip>
+     </div>
+     <div *ngIf="item.categoria == 'Hogar' && catHogar" class="ionCardProductTrigger" [routerLink]="['/modificar-productos/',item.id, username]" routerDirection="back" >
+       <h5>{{item.nombre}} ({{item.precio}}€)</h5>
+       <ion-card-content>{{item.descripcion}}</ion-card-content>
+       <ion-chip color="success">
+         <ion-icon name="home-outline" color="success"></ion-icon>
+         <ion-label color="success">{{item.categoria}}</ion-label>
+       </ion-chip>
+     </div>
+     <div *ngIf="item.categoria == 'Motor' && catMotor" class="ionCardProductTrigger" [routerLink]="['/modificar-productos/',item.id, username]" routerDirection="back" >
+       <h5>{{item.nombre}} ({{item.precio}}€)</h5>
+       <ion-card-content>{{item.descripcion}}</ion-card-content>
+       <ion-chip color="danger">
+         <ion-icon name="car-outline" color="danger"></ion-icon>
+         <ion-label color="danger">{{item.categoria}}</ion-label>
+       </ion-chip>
+     </div>
+     <div *ngIf="item.categoria == 'Inmobiliaria' && catInmo" class="ionCardProductTrigger" [routerLink]="['/modificar-productos/',item.id, username]" routerDirection="back" >
+       <h5>{{item.nombre}} ({{item.precio}}€)</h5>
+       <ion-card-content>{{item.descripcion}}</ion-card-content>
+       <ion-chip color="warning">
+         <ion-icon name="business-outline" color="warning"></ion-icon>
+         <ion-label color="warning">{{item.categoria}}</ion-label>
+       </ion-chip>
+     </div>
+   </ion-card>
+  </div>
+</ion-content>

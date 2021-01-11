@@ -1,26 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
-import { ActivatedRoute } from "@angular/router";
-import { ListadoProductos } from '../services/listado.service';
 import { Iproductos, IproductoTecnologia, IproductoInmobiliaria, IproductoMotor } from '../interfaces';
+import { ListadoProductos } from '../services/listado.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-ver-productos',
-  templateUrl: './ver-productos.page.html',
-  styleUrls: ['./ver-productos.page.scss'],
+  selector: 'app-mis-productos',
+  templateUrl: './mis-productos.page.html',
+  styleUrls: ['./mis-productos.page.scss'],
 })
-export class VerProductosPage implements OnInit {
+export class MisProductosPage implements OnInit {
+  username : string;
   productos : (Iproductos | IproductoTecnologia | IproductoInmobiliaria | IproductoMotor)[] = [];
+  catHogar : boolean = true;
+  catMotor : boolean = true;
+  catTecno : boolean = true;
+  catInmo : boolean = true;
 
-  constructor(private _activatedRoute : ActivatedRoute, private _productList : ListadoProductos, private _toastCtrl : ToastController) { }
+  constructor(private _activatedRoute : ActivatedRoute, private _productList : ListadoProductos) { }
 
   ngOnInit() {
+    this.username = this._activatedRoute.snapshot.paramMap.get('username');
+
     const ref = this._productList.getProductos();
     ref.on("value", snapshot => {
       this.productos = [];
       snapshot.forEach(child => {
         console.log("He encontrado " + child.key + " " + child.val().categoria);
-        if (child.val().categoria == 'Tecnología') {
+        if (child.val().categoria == 'Tecnología' && child.val().propietario === this.username) {
           this.productos.push(
             {
               "propietario" : child.val().propietario,
@@ -32,7 +38,7 @@ export class VerProductosPage implements OnInit {
               "estado" : child.val().estado
             }
           )
-        } else if (child.val().categoria == 'Motor'){
+        } else if (child.val().categoria == 'Motor' && child.val().propietario === this.username){
           this.productos.push(
             {
               "propietario" : child.val().propietario,
@@ -46,7 +52,7 @@ export class VerProductosPage implements OnInit {
               "anyo" : child.val().anyo.substring(0,4)
             }
           );
-        } else if (child.val().categoria == 'Inmobiliaria'){
+        } else if (child.val().categoria == 'Inmobiliaria' && child.val().propietario === this.username){
           this.productos.push(
             {
               "propietario" : child.val().propietario,
@@ -61,7 +67,7 @@ export class VerProductosPage implements OnInit {
               "localidad" : child.val().localidad
             }
           );
-        }else{
+        }else if (child.val().propietario === this.username){
           this.productos.push(
             {
               "propietario" : child.val().propietario,

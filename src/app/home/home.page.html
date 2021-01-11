@@ -10,10 +10,10 @@
 
 <ion-footer class="ion-no-border">
   <ion-toolbar>
-    <ion-button class="ion-button-footer" routerLink="/subir-producto" routerDirection="forward">
+    <ion-button class="ion-button-footer" [routerLink]="['/subir-producto/', username]" routerDirection="forward">
       <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
     </ion-button>
-    <ion-button class="ion-button-footer" routerLink="/ver-productos" routerDirection="back">
+    <ion-button class="ion-button-footer" [routerLink]="['/mis-productos/', username]" routerDirection="back">
       <ion-icon slot="icon-only" name="download-outline"></ion-icon>
     </ion-button>
     <ion-button class="ion-button-footer" routerLink="/ver-productos" routerDirection="back">

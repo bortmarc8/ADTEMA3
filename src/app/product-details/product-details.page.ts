@@ -17,9 +17,6 @@ export class ProductDetailsPage implements OnInit {
   ngOnInit() {
     this.id = this._activatedRoute.snapshot.paramMap.get('id');
     this.producto = this._productList.getProductoDetailed(this.id);
-    console.log(this.producto);
-
-
 
   }
 

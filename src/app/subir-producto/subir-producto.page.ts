@@ -3,6 +3,7 @@ import { PickerController, ToastController } from '@ionic/angular';
 import { PickerOptions } from '@ionic/core';
 import { Iproductos, IproductoTecnologia, IproductoInmobiliaria, IproductoMotor } from '../interfaces';
 import { ListadoProductos } from '../services/listado.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-subir-producto',
@@ -10,6 +11,7 @@ import { ListadoProductos } from '../services/listado.service';
   styleUrls: ['./subir-producto.page.scss'],
 })
 export class SubirProductoPage {
+  username : string;
   nombre : string;
   descripcion : string;
   categoria : string = 'Hogar';
@@ -25,7 +27,11 @@ export class SubirProductoPage {
 
   productos : (Iproductos | IproductoTecnologia | IproductoInmobiliaria | IproductoMotor)[] = [];
 
-  constructor(private _pickerCtrl : PickerController, private _toastCtrl : ToastController, private _productList : ListadoProductos) {}
+  constructor(private _pickerCtrl : PickerController, private _toastCtrl : ToastController, private _productList : ListadoProductos, private _activatedRoute : ActivatedRoute) {}
+
+  ngOnInit() {
+    this.username = this._activatedRoute.snapshot.paramMap.get('username');
+  }
 
   async presentToast() {
     const toast = await this._toastCtrl.create({
@@ -47,8 +53,8 @@ export class SubirProductoPage {
         {
           name: 'categoria',
           options: [
-            { text: 'Tecnología', value: 'tecnologia' },
             { text: 'Hogar', value: 'hogar' },
+            { text: 'Tecnología', value: 'tecnologia' },
             { text: 'Inmobiliaria', value: 'inmobiliaria' },
             { text: 'Motor', value: 'motor' },
           ]
@@ -67,7 +73,7 @@ export class SubirProductoPage {
     if (this.categoria == 'Tecnología') {
       this._productList.setProducto(
         {
-          "propietario" : "maboto01",
+          "propietario" : this.username,
           "id" : '',
           "nombre" : this.nombre,
           "descripcion" : this.descripcion,
@@ -79,7 +85,7 @@ export class SubirProductoPage {
     } else if (this.categoria == 'Motor'){
       this._productList.setProducto(
         {
-          "propietario" : "maboto01",
+          "propietario" : this.username,
           "id" : '',
           "nombre" : this.nombre,
           "descripcion" : this.descripcion,
@@ -93,7 +99,7 @@ export class SubirProductoPage {
     } else if (this.categoria == 'Inmobiliaria'){
       this._productList.setProducto(
         {
-          "propietario" : "maboto01",
+          "propietario" : this.username,
           "id" : '',
           "nombre" : this.nombre,
           "descripcion" : this.descripcion,
@@ -108,7 +114,7 @@ export class SubirProductoPage {
     }else{
       this._productList.setProducto(
         {
-          "propietario" : "maboto01",
+          "propietario" : this.username,
           "id" : '',
           "nombre" : this.nombre,
           "descripcion" : this.descripcion,
