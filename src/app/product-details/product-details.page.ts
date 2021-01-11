@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListadoProductos } from '../services/listado.service';
 import { ActivatedRoute } from "@angular/router";
-
+import { Iproductos, IproductoTecnologia, IproductoInmobiliaria, IproductoMotor } from '../interfaces';
 
 @Component({
   selector: 'app-product-details',
