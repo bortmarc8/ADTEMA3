@@ -27,6 +27,9 @@
          <ion-label color="warning">{{item.categoria}}</ion-label>
        </ion-chip>
      </div>
+     <ion-button (click)="buttonLike(item.id)" class="ion-button-like">
+      <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+     </ion-button>
    </ion-card>
   </div>
 </ion-content>

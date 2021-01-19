@@ -13,11 +13,14 @@
     <ion-button class="ion-button-footer" [routerLink]="['/subir-producto/', username]" routerDirection="forward">
       <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
     </ion-button>
-    <ion-button class="ion-button-footer" [routerLink]="['/mis-productos/', username]" routerDirection="back">
+    <ion-button class="ion-button-footer" [routerLink]="C" routerDirection="back">
       <ion-icon slot="icon-only" name="download-outline"></ion-icon>
     </ion-button>
     <ion-button class="ion-button-footer" routerLink="/ver-productos" routerDirection="back">
       <ion-icon slot="icon-only" name="list-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button class="ion-button-footer" [routerLink]="['/likes/', username]" routerDirection="back">
+      <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-footer>

@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Iproductos, IproductoTecnologia, IproductoInmobiliaria, IproductoMotor } from '../interfaces';
+import { ToastController } from '@ionic/angular';
+import { ActivatedRoute } from "@angular/router";
 import { ListadoProductos } from '../services/listado.service';
-import { ActivatedRoute } from '@angular/router';
+import { Iproductos, IproductoTecnologia, IproductoInmobiliaria, IproductoMotor } from '../interfaces';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
-  selector: 'app-mis-productos',
-  templateUrl: './mis-productos.page.html',
-  styleUrls: ['./mis-productos.page.scss'],
+  selector: 'app-likes',
+  templateUrl: './likes.page.html',
+  styleUrls: ['./likes.page.scss'],
 })
-export class MisProductosPage implements OnInit {
+
+export class LikesPage implements OnInit {
   username : string;
   productos : (Iproductos | IproductoTecnologia | IproductoInmobiliaria | IproductoMotor)[] = [];
+  likedProductos : (Iproductos | IproductoTecnologia | IproductoInmobiliaria | IproductoMotor)[] = [];
   catHogar : boolean = true;
   catMotor : boolean = true;
   catTecno : boolean = true;
@@ -25,7 +29,6 @@ export class MisProductosPage implements OnInit {
     ref.on("value", snapshot => {
       this.productos = [];
       snapshot.forEach(child => {
-        console.log("He encontrado " + child.key + " " + child.val().categoria);
         if (child.val().categoria == 'Tecnología' && child.val().propietario === this.username) {
           this.productos.push(
             {
@@ -84,7 +87,23 @@ export class MisProductosPage implements OnInit {
           );
         }
       });
-    })
+    });
+
+    console.log("Se ejecuta");
+    this.loadObjects();
   }
 
+  async loadObjects () {
+    this.productos.forEach(element => {
+      console.log(element);
+      console.log("Se ejecuta2");
+     if (typeof element.like != undefined) {
+      element.like.forEach(element2 => {
+        if (element2 == this.username) {
+          this.likedProductos.push(element);
+         }
+        });
+      }
+    });
+  }
 }

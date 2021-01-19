@@ -35,7 +35,8 @@ export class ListadoProductos {
             "descripcion" : child.val().descripcion,
             "categoria" : child.val().categoria,
             "precio" : child.val().precio,
-            "estado" : child.val().estado
+            "estado" : child.val().estado,
+            "like" : child.val().like
           }
       } else if (child.val().categoria == 'Motor'){
         producto =
@@ -48,7 +49,8 @@ export class ListadoProductos {
             "precio" : child.val().precio,
             "tipo" : child.val().tipo,
             "kilometros" : child.val().kilometros,
-            "anyo" : child.val().anyo.substring(0,4)
+            "anyo" : child.val().anyo.substring(0,4),
+            "like" : child.val().like
           }
       } else if (child.val().categoria == 'Inmobiliaria'){
         producto =
@@ -62,7 +64,8 @@ export class ListadoProductos {
             "metrosCuadrados" : child.val().metrosCuadrados,
             "banyos" : child.val().banyos,
             "habitaciones" : child.val().habitaciones,
-            "localidad" : child.val().localidad
+            "localidad" : child.val().localidad,
+            "like" : child.val().like
           }
       }else{
         producto =
@@ -72,7 +75,8 @@ export class ListadoProductos {
             "nombre" : child.val().nombre,
             "descripcion" : child.val().descripcion,
             "categoria" : child.val().categoria,
-            "precio" : child.val().precio
+            "precio" : child.val().precio,
+            "like" : child.val().like
           }
       }
     });

@@ -24,6 +24,7 @@ export class SubirProductoPage {
   tipoVehiculo : string;
   kilometros : number;
   anyo : string;
+  like : string[];
 
   productos : (Iproductos | IproductoTecnologia | IproductoInmobiliaria | IproductoMotor)[] = [];
 
@@ -79,7 +80,8 @@ export class SubirProductoPage {
           "descripcion" : this.descripcion,
           "categoria" : this.categoria,
           "precio" : this.precio,
-          "estado" : this.estado
+          "estado" : this.estado,
+          "like" : this.like
         }
       )
     } else if (this.categoria == 'Motor'){
@@ -93,7 +95,8 @@ export class SubirProductoPage {
           "precio" : this.precio,
           "tipo" : this.tipoVehiculo,
           "kilometros" : this.kilometros,
-          "anyo" : this.anyo.substring(0,4)
+          "anyo" : this.anyo.substring(0,4),
+          "like" : this.like
         }
       );
     } else if (this.categoria == 'Inmobiliaria'){
@@ -108,7 +111,8 @@ export class SubirProductoPage {
           "metrosCuadrados" : this.mCuadrados,
           "banyos" : this.banyos,
           "habitaciones" : this.habitaciones,
-          "localidad" : this.localidad
+          "localidad" : this.localidad,
+          "like" : this.like
         }
       );
     }else{
@@ -119,7 +123,8 @@ export class SubirProductoPage {
           "nombre" : this.nombre,
           "descripcion" : this.descripcion,
           "categoria" : this.categoria,
-          "precio" : this.precio
+          "precio" : this.precio,
+          "like" : this.like
         }
       );
     }

@@ -1,3 +1,5 @@
+import { INFERRED_TYPE } from "@angular/compiler/src/output/output_ast";
+
 export interface Iproductos {
   "propietario" : string;
   "id" : string;
@@ -5,6 +7,7 @@ export interface Iproductos {
   "descripcion" : string;
   "categoria" : string;
   "precio" : number;
+  "like" : string[];
 }
 
 export interface IproductoTecnologia extends Iproductos{
